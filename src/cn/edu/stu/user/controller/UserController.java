@@ -20,11 +20,16 @@ import cn.edu.stu.user.domain.User;
 import cn.edu.stu.user.service.UserService;
 
 @Controller
+@RequestMapping("user")
 public class UserController {
     
 	@Autowired
 	private UserService userService;
 	
+	@RequestMapping(value="order", produces="text/html;charset=UTF-8")
+    public String carModel(){
+        return "order";
+    }
 	@RequestMapping(value="/loginForm")
 	public ModelAndView loginForm(ModelAndView mv){
 		mv.setViewName("loginForm");
@@ -39,19 +44,14 @@ public class UserController {
 			 ModelAndView mv){
 		String loginName = request.getParameter("loginName");
 		String password = request.getParameter("password");
-		// 调用业务逻辑组件判断用户是否可以登录
 		User user = userService.login(loginName, password);
 		
 		if(user != null){
-			// 将用户保存到HttpSession当中
 			session.setAttribute("user", user);
-			// 客户端跳转到main页面
 			mv.setViewName("userInfo");
 		}
 		else{
-			// 设置登录失败提示信息
-			mv.addObject("message", "登录名或密码错误!请重新输入");
-			// 服务器内部跳转到登录页面
+			mv.addObject("message", "so what the fuck");
 			mv.setViewName("loginForm");
 		}
 		
