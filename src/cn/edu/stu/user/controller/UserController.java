@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -35,9 +36,8 @@ public class UserController {
 	@RequestMapping(value="/login",produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
 	@ResponseBody
 	public Object login(
-			@RequestBody User user){
-		String user_account = user.getUser_account();
-		String user_password = user.getUser_password();
+			@RequestParam("user_account") String user_account,
+			@RequestParam("user_password") String user_password){
 		User userReturn = userService.login(user_account, user_password);
 		if(userReturn!=null){
 			return new JsonResponse<User>("1","login success",userReturn);
@@ -50,17 +50,16 @@ public class UserController {
 	@RequestMapping(value="/registerUser",produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
 	@ResponseBody
 	public Object registerUser(
-			@RequestBody User user){
-		String user_account = user.getUser_account();
-		String user_password = user.getUser_password();
-		String user_name = user.getUser_name();
-		String user_email = user.getUser_email();
+			@RequestParam("user_account") String user_account,
+			@RequestParam("user_password") String user_password,
+			@RequestParam("user_name") String user_name,
+			@RequestParam("user_email")String user_email){
 		try{                         //TODO 当用户注册的账号已经存在，会抛出异常
 			int userReturn = userService.register(user_account, user_password,user_name,user_email);
 			System.out.println(userReturn);
-			return new JsonResponse<User>("1","registerUser success",user);
+			return new JsonResponse<Boolean>("1","registerUser success",true);
 		}catch (Exception e){
-			return new JsonResponse<User>("0","registerUser fail",user);
+			return new JsonResponse<>("0","registerUser fail",false);
 		}
 	}
 
@@ -68,36 +67,33 @@ public class UserController {
 	@RequestMapping(value="/updateUserPassword",produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
 	@ResponseBody
 	public Object updateUserPassword(
-			@RequestBody User user){
-		String user_account = user.getUser_account();
-		String user_password = user.getUser_password();
+			@RequestParam("user_account") String user_account,
+			@RequestParam("user_password") String user_password){
 		userService.updatePassword(user_account,user_password);
-		return new JsonResponse<User>("1","updateUserPassword success",user);
+		return new JsonResponse<Boolean>("1","updateUserPassword success",true);
 	}
 	//修改个人信息
 	@RequestMapping(value="/updateUserInformation",produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
 	@ResponseBody
 	public Object updateUserInformation(
-			@RequestBody User user){
-		String user_account = user.getUser_account();
-		String user_name = user.getUser_name();
-		String user_email = user.getUser_email();
+			@RequestParam("user_account") String user_account,
+			@RequestParam("user_name") String user_name,
+			@RequestParam("user_email")String user_email){
 		userService.updatePersonalInformation(user_account,user_name,user_email);
-		return new JsonResponse<User>("1","updateUserInformation success",user);
+		return new JsonResponse<Boolean>("1","updateUserInformation success",true);
 	}
 	//注销
 	@RequestMapping(value="/deleteUser",produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
 	@ResponseBody
 	public Object deleteUser(
-			@RequestBody User user){
-		String user_account = user.getUser_account();
-		String user_password = user.getUser_password();
+			@RequestParam("user_account") String user_account,
+			@RequestParam("user_password") String user_password){
 		int userReturn = userService.delete(user_account,user_password);
 		System.out.println(userReturn);
 		if(userReturn==1){         //成功返回1，失败返回0
-			return new JsonResponse<User>("1","deleteUser success",user);
+			return new JsonResponse<Boolean>("1","deleteUser success",true);
 		}else {
-			return new JsonResponse<User>("0","deleteUser fail",user);
+			return new JsonResponse<Boolean>("0","deleteUser fail",false);
 		}
 	}
 }

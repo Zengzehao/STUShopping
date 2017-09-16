@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -30,9 +31,7 @@ public class CommodityController {
     @RequestMapping(value="/findWithCommodityKindName",produces = "application/json;charset=UTF-8",method = RequestMethod.POST)
     @ResponseBody
     public Object findWithCommodityKindName(
-            @RequestBody CommodityKindName commodityKindName){
-        System.out.println("commodityKindName:"+commodityKindName.toString());
-        String commodity_kind_name = commodityKindName.getCommodity_kind_name();
+    		@RequestParam("commodity_kind_name")String commodity_kind_name){
         System.out.println("commodity_kind_name:"+commodity_kind_name);
         List<Commodity> list = new ArrayList<>();
         list = commodityService.findWithCommodityKindName(commodity_kind_name);
