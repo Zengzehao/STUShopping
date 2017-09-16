@@ -1,31 +1,26 @@
 package cn.edu.stu.user.service;
 
-
 import cn.edu.stu.user.domain.User;
 
+/**
+ * UseræœåŠ¡å±‚æ¥å£
+ * */
 public interface UserService {
-	/**
-	 * ÓÃ»§µÇÂ¼
-	 */
-    User login(String loginName, String password);
-    
-    /**
-	 * É¾³ıÓÃ»§
-	 */
-	void removeUserById(Integer id);
 	
 	/**
-	 * ĞŞ¸ÄÓÃ»§
-	 */
-	void modifyUser(User user);
-	
-	/**
-	 * Ôö¼ÓÓÃ»§
-	 */
-	void addUser(User user);
-	
-	/**
-	 * ¸ù¾İID²éÕÒÓÃ»§
-	 */
-	User findUserById(Integer id);
+	 * åˆ¤æ–­ç”¨æˆ·ç™»å½•
+	 * @param user_account
+	 * @param user_password
+	 * @return æ‰¾åˆ°è¿”å›Userå¯¹è±¡ï¼Œæ²¡æœ‰æ‰¾åˆ°è¿”å›null
+	 * */
+	User login(String user_account, String user_password);
+
+	int register(String user_account, String user_password,String user_name,String user_email);
+
+	int delete(String user_account, String user_password);
+
+	void updatePassword(String user_account, String user_password);
+
+	void updatePersonalInformation(String user_account,String user_name, String user_email);
+
 }
