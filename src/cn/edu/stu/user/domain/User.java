@@ -1,45 +1,64 @@
 package cn.edu.stu.user.domain;
-
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class User implements Serializable{
-	
-	private Integer id;			// id
-	private String loginName;	// ÓÃ»§Ãû
-	private String password;	// ÃÜÂë
-	
-	public User(){
+public class User implements Serializable {
+
+	private Integer user_id; // ç”¨æˆ·id
+	private String user_account; //
+	private String user_password; //
+	private String user_name;
+	private String user_email;
+
+	public User() {
 		super();
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getUser_id() {
+		return user_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
 	}
 
-	public String getLoginName() {
-		return loginName;
+	public String getUser_account() {
+		return user_account;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
+	public void setUser_account(String user_account) {
+		this.user_account = user_account;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getUser_password() {
+		return user_password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
-	
+
+	public String getUser_name() {
+		return user_name;
+	}
+
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
+	public String getUser_email() {
+		return user_email;
+	}
+
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", loginName=" + loginName 
-				+ ", password=" + password +"]";
+		return "User [user_id=" + user_id + ", user_account=" + user_account + ", user_password=" + user_password
+				+ ", user_name=" + user_name + ", user_email=" + user_email + "]";
 	}
+
+	
 }
