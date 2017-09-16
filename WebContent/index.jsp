@@ -80,6 +80,9 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                    	<li>
+                            <a href="register.jsp">注册</a>
+                        </li>	
                         <li>
                             <a href="car.jsp">购物车</a>
                         </li>
