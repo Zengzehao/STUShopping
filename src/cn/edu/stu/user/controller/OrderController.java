@@ -1,5 +1,6 @@
 package cn.edu.stu.user.controller;
 
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,14 +35,14 @@ public class OrderController {
     @RequestMapping(value="add", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
     public Object add(@RequestBody OrderAddRequest order){
-        System.out.println(order.getOrderId());
-        System.out.println(order.getUserId());
-        for(int i=0;i<order.getCommodityIdAndNum().size();i++){
-            System.out.println(order.getCommodityIdAndNum().get(i).getCommodityId()+order.getCommodityIdAndNum().get(i).getCommodityNum());
+        if(order.getOrderId()==null){
+            long date=new Date().getTime();
+            String orderId=""+date+order.getUserId();
+            order.setOrderId(orderId);
         }
         return new JsonResponse<Integer>("1", "add success", orderService.add(order));
     }
-    
+
     @RequestMapping(value="findUnpay", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
     @ResponseBody
     public Object findUnpay(@RequestParam("userId") String userId){
