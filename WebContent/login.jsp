@@ -71,6 +71,11 @@
                         <button class="btn btn-info custom-btn" id="submit">登录</button>
                     </div>
                 </div>
+                <div class="row clearfix row-margin-top">
+                    <div class="col-md-12 column">
+                        <label><a href="register.jsp">注册</a></label>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -79,25 +84,28 @@
                 console.log("aaa");
                 $("#submit").click(function () {
                     // alert("进来了");
-                    /* let username = $("#username").val();
-                    let password = $("#password").val();
-                    console.log(username);
-                    console.log(password);
+                     let user_account = $("#username").val();
+                    let user_password = $("#password").val();
+                    console.log(user_account);
+                    console.log(user_password);
                     $.ajax({
-                        type: "GET",
-                        url: "http://localhost/ssm3/contact/showContact",
-                        data: { username: username, password: password },
+                        type: "POST",
+                        url: "/STUShopping/login",
+                        data: { user_account: user_account, user_password: user_password },
                         dataType: 'json',
                         success: function (data) {
                             //alert("lalal");
-                            if (data[0].id == 1) {
+                            console.log(data);
+                            if (data.code == 1) {
                                 //alert("登录成功");
                                window.location.href = "index.jsp";
+                            }else{
+                                alert(data.mes);
                             }
-                            console.log(data);
+                            
                         }
-                    }); */
-                  window.location.href = "index.jsp";
+                    }); 
+                  //window.location.href = "index.jsp";
                   return false;
                 });
                 //window.location.href = "index.html";
