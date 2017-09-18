@@ -98,7 +98,9 @@
                             console.log(data);
                             if (data.code == 1) {
                                 //alert("登录成功");
-                               window.location.href = "index.jsp";
+                                window.sessionStorage.setItem("user_name",data.data.user_name);
+                                window.sessionStorage.setItem("user_id",data.data.user_id);
+                                window.location.href = "index.jsp";
                             }else{
                                 alert(data.mes);
                             }
