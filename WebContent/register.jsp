@@ -136,10 +136,10 @@
                 //         alert("该用户名已经被注册！");
                 //     }
                 // });
-                $("#email").blur(function(){
-                    let email = $("#email").val();
+                $("#user_email").blur(function(){
+                    let email = $("#user_email").val();
                     let reg =  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
-                    alert(reg.test(email));
+                    //alert(reg.test(email));
                     if(!reg.test(email)){
                         alert("邮箱格式不正确，请重新输入");
                     }
