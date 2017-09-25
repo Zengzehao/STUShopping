@@ -31,7 +31,7 @@
                             <div class="navbar-inner">
                                 <!--fluid 是偏移一部分-->
                                 <div class="container-fluid">
-                                    <a class="brand" href="index.html">
+                                    <a class="brand" href="car.jsp">
                             <img src="images/car.png" />
                         </a>
                                 </div>
